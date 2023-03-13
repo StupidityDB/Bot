@@ -1,0 +1,12 @@
+services:
+    stupiddb-bot:
+        build: .
+        deploy:
+            resources:
+                limits:
+                    cpus: '2'
+                    memory: '4G'
+        volumes:
+          - type: bind
+            source: ./stupiditydb/cogs
+            target: /usr/src/app/cogs
