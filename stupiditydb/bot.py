@@ -18,6 +18,9 @@ class Bot(commands.Bot):
     async def on_ready(self):
         print(f'Logged on as {self.user} (ID: {self.user.id})')
 
+    async def on_command_error(self, ctx, error):
+        if isinstance(error, commands.NotOwner):
+            await ctx.reply(embed=discord.Embed(title="Error",description=f"🤯 You are not allowed to run this command."))
 
 intents = discord.Intents.default()
 intents.message_content = True
