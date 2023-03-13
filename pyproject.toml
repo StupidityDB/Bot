@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "stupiditydb-bot"
+version = "0.0.1"
+description = "Bot for StupidityDB"
+authors = ["StupidityDB <postmaster@example.lan>"]
+license = "GPL3"
+readme = "README.md"
+packages = [{include = "stupiditydb_bot"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+discord = "^2.2.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
