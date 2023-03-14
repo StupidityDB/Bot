@@ -2,7 +2,7 @@ from discord.ext import commands
 import discord
 
 class Windows10(commands.Cog):
-    """The description for Windows10 goes here."""
+    """Windows 10 Downloader"""
 
     def __init__(self, bot):
         self.bot = bot
