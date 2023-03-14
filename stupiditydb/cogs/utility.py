@@ -22,9 +22,9 @@ class Utility(commands.Cog):
     @commands.hybrid_command()
     async def ping(self, ctx):
         """Replies with Pong to indicate that the bot is alive"""
-        await ctx.reply("Pong!")
+        await ctx.reply(f"Pong! {round(1000*self.bot.latency, 2)}ms")
 
-    @commands.command()
+    @commands.command(hidden=True)
     @commands.is_owner()
     async def reload(self, ctx, module):
         module = f"cogs.{module}"
