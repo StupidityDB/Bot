@@ -22,6 +22,7 @@ class Bot(commands.Bot):
 
     async def on_ready(self):
         print(f"Logged on as {self.user} (ID: {self.user.id})")
+#        self.metrics_msg = await bot.get_channel(1084587617015824456).fetch_message(1085267945829191770)
 
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.NotOwner):
@@ -35,8 +36,8 @@ class Bot(commands.Bot):
 
 intents = discord.Intents.default()
 intents.message_content = True
-bot = Bot(intents=intents)
+activity = discord.Activity(type=discord.ActivityType.watching, name="you being stupit")
+bot = Bot(intents=intents, activity=activity)
 
-# write general commands here
 
 bot.run(config.token)
