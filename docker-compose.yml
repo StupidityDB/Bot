@@ -10,3 +10,6 @@ services:
           - type: bind
             source: ./stupiditydb/cogs
             target: /usr/src/app/cogs
+          - type: bind
+            source: ./stupiditydb/lib
+            target: /usr/src/app/lib

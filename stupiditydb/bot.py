@@ -22,7 +22,8 @@ class Bot(commands.Bot):
 
     async def on_ready(self):
         print(f"Logged on as {self.user} (ID: {self.user.id})")
-#        self.metrics_msg = await bot.get_channel(1084587617015824456).fetch_message(1085267945829191770)
+
+    #        self.metrics_msg = await bot.get_channel(1084587617015824456).fetch_message(1085267945829191770)
 
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.NotOwner):
