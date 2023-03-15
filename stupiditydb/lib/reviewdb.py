@@ -34,6 +34,6 @@ class ReviewDB(Base):
             raise Exception("[get_user_reviews] Request returned failure")
         reviews = []
         for review in data["reviews"]:
-            if review["type"] != 3:
+            if include_system or review["type"] != 3:
                 reviews.append(Review(review))
         return reviews
