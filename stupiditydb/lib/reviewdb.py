@@ -1,14 +1,14 @@
 """
-Python module to make interaction with stupiditydb easier
+Python module to make interaction with reviewdb easier
 """
 
-import aiohttp
 from datetime import datetime as dt
 
+from lib.base import Base
 
 class Review:
     """
-    A class containing attributes of a stupiditydb review
+    A class containing attributes of a reviewdb review
     """
     def __init__(self, data):
         self.id: int = data.get("id", 0)
@@ -23,27 +23,17 @@ class Review:
         return dt.utcfromtimestamp(self.timestamp)
 
 
-class ReviewDB:
+class ReviewDB(Base):
     def __init__(self, API_BASE: str = "https://manti.vendicated.dev/api"):
-        self.API_BASE = API_BASE
+        super().__init__(API_BASE)
 
-    async def api_get(self, endpoint: str, json: bool =True, *args, **kwargs):
-        async with aiohttp.ClientSession() as session:
-            async with session.get(
-                self.API_BASE + endpoint, *args, **kwargs
-            ) as response:
-                if json:
-                    text = await response.json()
-                else:
-                    text = await response.text()
-        return text
-
-    async def get_user_reviews(self, user_id):
+    async def get_user_reviews(self, user_id, include_system=False):
         endpoint = "/reviewdb/users/%s/reviews"
         data: list = await self.api_get(endpoint % user_id)
         if not data["success"]:
             raise Exception("[get_user_reviews] Request returned failure")
         reviews = []
         for review in data["reviews"]:
-            reviews.append(Review(review))
+            if review["type"] != 3:
+                reviews.append(Review(review))
         return reviews

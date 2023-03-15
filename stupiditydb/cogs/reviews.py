@@ -1,6 +1,6 @@
 from typing import List
 
-from lib.stupid import ReviewDB, Review
+from lib.reviewdb import ReviewDB, Review
 
 from discord.ext import commands
 import discord
