@@ -13,7 +13,7 @@ class Reviews(commands.Cog):
         self.bot: commands.Bot = bot
         self.reviewdb: ReviewDB = ReviewDB()
 
-    @commands.hybrid_command(name="get")
+    @commands.hybrid_command(name="getreviews")
     async def get_reviews(self, ctx, *, user: discord.User):
         """Get reviews of a specific user"""
         review_list: List[Review] = await self.reviewdb.get_user_reviews(user.id)
