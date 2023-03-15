@@ -6,19 +6,21 @@ from datetime import datetime as dt
 
 from lib.base import Base
 
+
 class Review:
     """
     A class containing attributes of a reviewdb review
     """
+
     def __init__(self, data):
-        self.id: int = data.get("id", 0)
+        self.review_id: int = data.get("id", 0)
         self.user_id = data["sender"]["discordID"]
         self.stars = data["star"]
         self.comment = data["comment"]
         self.badges = data["sender"]["badges"]
         self.type = data["type"]
         self.timestamp = data["timestamp"]
-    
+
     def datetime(self) -> dt:
         return dt.utcfromtimestamp(self.timestamp)
 

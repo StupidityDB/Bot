@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
 
+"""
+This is a bot for StupidityDB and ReviewDB
+"""
+
 from discord.ext import commands
 import discord
 import config
 
 
 class Bot(commands.Bot):
+    """
+    Bot class containing the cog loader and error handler
+    """
+
     def __init__(self, intents: discord.Intents, **kwargs):
         super().__init__(
             command_prefix=commands.when_mentioned_or(">"), intents=intents, **kwargs
@@ -23,14 +31,12 @@ class Bot(commands.Bot):
     async def on_ready(self):
         print(f"Logged on as {self.user} (ID: {self.user.id})")
 
-    #        self.metrics_msg = await bot.get_channel(1084587617015824456).fetch_message(1085267945829191770)
-
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.NotOwner):
             await ctx.reply(
                 embed=discord.Embed(
                     title="Error",
-                    description=f"🤯 You are not allowed to run this command.",
+                    description="🤯 You are not allowed to run this command.",
                 )
             )
 

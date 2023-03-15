@@ -4,7 +4,6 @@ import textwrap
 from contextlib import redirect_stdout
 
 from discord.ext import commands
-import discord
 
 
 class Utility(commands.Cog):
@@ -58,8 +57,8 @@ class Utility(commands.Cog):
 
         try:
             exec(to_compile, env)
-        except Exception as e:
-            return await ctx.send(f"```py\n{e.__class__.__name__}: {e}\n```")
+        except Exception as error:
+            return await ctx.send(f"```py\n{error.__class__.__name__}: {error}\n```")
 
         func = env["func"]
         try:

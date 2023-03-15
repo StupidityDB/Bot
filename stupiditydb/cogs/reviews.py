@@ -27,5 +27,6 @@ class Reviews(commands.Cog):
             embeds.append(embed)
         await ctx.send(f"{len(embeds)} reviews", embeds=embeds)
 
+
 async def setup(bot):
     await bot.add_cog(Reviews(bot))
