@@ -23,5 +23,5 @@ class StupidityDB(Base):
             "senderdiscordid": str(sender_user_id),
         }
         endpoint = "/vote"
-        data = await self.api_get(endpoint, method="PUT", json=data)
+        data = await self.api_get(endpoint, method="PUT", json=data, return_data=False)
         return data

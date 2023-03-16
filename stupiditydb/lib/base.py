@@ -9,13 +9,23 @@ class Base:
         self.API_BASE = API_BASE
         self.json = json
 
-    async def api_get(self, endpoint: str, is_json: bool = False, *args, **kwargs):
+    async def api_get(
+        self,
+        endpoint: str,
+        method="GET",
+        is_json: bool = False,
+        return_data: bool = True,
+        **kwargs
+    ):
         async with aiohttp.ClientSession() as session:
-            async with session.get(
-                self.API_BASE + endpoint, *args, **kwargs
+            async with session.request(
+                method, self.API_BASE + endpoint, **kwargs
             ) as response:
-                if self.json or is_json:
-                    text = await response.json()
+                if return_data:
+                    if self.json or is_json:
+                        text = await response.json()
+                    else:
+                        text = await response.text()
                 else:
-                    text = await response.text()
+                    text = response.ok
         return text
