@@ -5,15 +5,16 @@ import aiohttp
 
 
 class Base:
-    def __init__(self, API_BASE):
+    def __init__(self, API_BASE, json=True):
         self.API_BASE = API_BASE
+        self.json = json
 
-    async def api_get(self, endpoint: str, json: bool = True, *args, **kwargs):
+    async def api_get(self, endpoint: str, is_json: bool = False, *args, **kwargs):
         async with aiohttp.ClientSession() as session:
             async with session.get(
                 self.API_BASE + endpoint, *args, **kwargs
             ) as response:
-                if json:
+                if self.json or is_json:
                     text = await response.json()
                 else:
                     text = await response.text()
