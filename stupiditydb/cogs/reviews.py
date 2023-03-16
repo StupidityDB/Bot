@@ -2,8 +2,8 @@ from typing import List
 
 import discord
 from discord.ext import commands
-from reactionmenu import ViewMenu, ViewButton
 from lib.reviewdb import Review, ReviewDB
+from reactionmenu import ViewButton, ViewMenu
 
 
 class Reviews(commands.Cog):
@@ -28,7 +28,6 @@ class Reviews(commands.Cog):
             menu.add_page(embed)
         menu.add_button(ViewButton.back())
         menu.add_button(ViewButton.next())
-        #await ctx.send(f"{len(embeds)} reviews", embeds=embeds)
         await menu.start()
 
 
