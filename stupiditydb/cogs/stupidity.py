@@ -15,7 +15,12 @@ class Stupidity(commands.Cog):
         """Get stupidity of a specific user"""
         stupidity = await self.stupiditydb.get_user_stupidity(user.id)
         await ctx.send(f"Stupidity: {stupidity}%")
-
+    
+    @commands.hybrid_command(name="stupitvote")
+    async def vote_stupidity(self, ctx, user: discord.User):
+        """Vote for someone's stupidity"""
+        await self.stupiditydb.vote_user(user.id, ctx.author.id)
+        await ctx.send("Voted!")
 
 async def setup(bot):
     await bot.add_cog(Stupidity(bot))

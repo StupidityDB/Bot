@@ -6,6 +6,7 @@ from datetime import datetime as dt
 
 from lib.base import Base
 
+
 class Review:
     """
     A class containing attributes of a reviewdb review
