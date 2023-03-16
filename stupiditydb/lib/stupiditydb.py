@@ -3,6 +3,7 @@ Python module to make interaction with stupiditydb easier
 """
 from lib.base import Base
 
+
 class StupidityDB(Base):
     def __init__(self, API_BASE: str = "https://manti.vendicated.dev"):
         super().__init__(API_BASE)

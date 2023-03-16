@@ -1,7 +1,7 @@
 from typing import Literal
 
-from discord.ext import commands
 from discord import app_commands
+from discord.ext import commands
 
 
 class Windows10(commands.Cog):

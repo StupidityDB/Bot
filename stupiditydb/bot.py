@@ -4,9 +4,9 @@
 This is a bot for StupidityDB and ReviewDB
 """
 
-from discord.ext import commands
-import discord
 import config
+import discord
+from discord.ext import commands
 
 
 class Bot(commands.Bot):

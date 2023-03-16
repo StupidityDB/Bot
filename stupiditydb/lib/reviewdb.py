@@ -13,10 +13,10 @@ class Review:
 
     def __init__(self, data):
         self.review_id: int = data.get("id", 0)
-        self.user = { # could make this its own user object
+        self.user = {  # could make this its own user object
             "id": data["sender"]["discordID"],
             "name": data["sender"]["username"],
-            "avatar": data["sender"]["profilePhoto"]
+            "avatar": data["sender"]["profilePhoto"],
         }
         self.stars = data["star"]
         self.comment = data["comment"]

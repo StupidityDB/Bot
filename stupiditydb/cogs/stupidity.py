@@ -1,7 +1,6 @@
-from lib.stupiditydb import StupidityDB
-
-from discord.ext import commands
 import discord
+from discord.ext import commands
+from lib.stupiditydb import StupidityDB
 
 
 class Stupidity(commands.Cog):

@@ -1,6 +1,6 @@
 import io
-import traceback
 import textwrap
+import traceback
 from contextlib import redirect_stdout
 
 from discord.ext import commands
