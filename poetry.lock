@@ -775,6 +775,21 @@ spelling = ["pyenchant (>=3.2,<4.0)"]
 testutils = ["gitpython (>3)"]
 
 [[package]]
+name = "reactionmenu"
+version = "3.1.3"
+description = "A library to create a discord.py 2.0+ paginator. Supports pagination with buttons, reactions, and category selection using selects."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "reactionmenu-3.1.3-py3-none-any.whl", hash = "sha256:f80e545219c9bee7e467a62a5350420dcb85510aafd96f8a09b048c4c5336a81"},
+    {file = "reactionmenu-3.1.3.tar.gz", hash = "sha256:3493b82b374d4eddd823df1ceee98ef2e7a5676e505d5bcf8c10c5a73930a429"},
+]
+
+[package.dependencies]
+"discord.py" = ">=2.0.0"
+
+[[package]]
 name = "six"
 version = "1.16.0"
 description = "Python 2 and 3 compatibility utilities"
@@ -1013,4 +1028,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "b389c76f6e10f5b188e4f4752b89ede068c0747da17fb88de057ef0207d0fa79"
+content-hash = "ab6356a3659b34041f235f1ea24dfbcd2d908610263eea9958cb878386d9cdec"
