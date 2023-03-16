@@ -1,0 +1,2 @@
+token: str = "bot.token"
+cogs: list = ["cogs.utility", "cogs.windows10", "jishaku", "cogs.reviews", "cogs.stupidity"]
