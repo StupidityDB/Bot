@@ -22,8 +22,8 @@ class Reviews(commands.Cog):
         embeds: List[discord.Embed] = []
         for review in review_list[:10]:
             embed = discord.Embed(title="Review", description=review.comment)
-            embed.add_field(name="Author", value=review.user_id)
             embed.add_field(name="Date Posted", value=f"<t:{review.timestamp}>")
+            embed.set_author(name=review.user["name"], icon_url=review.user["avatar"])
             embeds.append(embed)
         await ctx.send(f"{len(embeds)} reviews", embeds=embeds)
 

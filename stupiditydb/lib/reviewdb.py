@@ -6,7 +6,6 @@ from datetime import datetime as dt
 
 from lib.base import Base
 
-
 class Review:
     """
     A class containing attributes of a reviewdb review
@@ -14,7 +13,11 @@ class Review:
 
     def __init__(self, data):
         self.review_id: int = data.get("id", 0)
-        self.user_id = data["sender"]["discordID"]
+        self.user = { # could make this its own user object
+            "id": data["sender"]["discordID"],
+            "name": data["sender"]["username"],
+            "avatar": data["sender"]["profilePhoto"]
+        }
         self.stars = data["star"]
         self.comment = data["comment"]
         self.badges = data["sender"]["badges"]
