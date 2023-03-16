@@ -18,9 +18,10 @@ class StupidityDB(Base):
 
     async def vote_user(self, user_id: int, sender_user_id: int):
         data = {
-            "token": config.stupid_token,
+            "token": config.token,
             "discordid": str(user_id),
             "senderdiscordid": str(sender_user_id),
         }
         endpoint = "/vote"
         data = await self.api_get(endpoint, method="PUT", json=data)
+        return data
