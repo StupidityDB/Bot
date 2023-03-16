@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "stupiditydb-bot"
-version = "0.0.1"
+version = "0.1.0"
 description = "Bot for StupidityDB"
 authors = ["StupidityDB <postmaster@example.lan>"]
 license = "GPL3"
