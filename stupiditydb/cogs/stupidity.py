@@ -17,9 +17,11 @@ class Stupidity(commands.Cog):
         await ctx.send(f"Stupidity: {stupidity}%")
 
     @commands.hybrid_command(name="stupitvote")
-    async def vote_stupidity(self, ctx, user: discord.User):
+    async def vote_stupidity(
+        self, ctx, user: discord.User, stupidity_level: commands.Range[int, 0, 100]
+    ):
         """Vote for someone's stupidity"""
-        ok = await self.stupiditydb.vote_user(user.id, ctx.author.id)
+        ok = await self.stupiditydb.vote_user(user.id, ctx.author.id, stupidity_level)
         if ok:
             await ctx.send("Voted!")
 
