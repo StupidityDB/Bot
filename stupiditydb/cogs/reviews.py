@@ -1,9 +1,9 @@
 from typing import List
 
-from lib.reviewdb import ReviewDB, Review
-
-from discord.ext import commands
 import discord
+from discord.ext import commands
+from reactionmenu import ViewMenu, ViewButton
+from lib.reviewdb import Review, ReviewDB
 
 
 class Reviews(commands.Cog):
@@ -20,12 +20,16 @@ class Reviews(commands.Cog):
         if not review_list:
             return await ctx.send("No reviews found")
         embeds: List[discord.Embed] = []
+        menu = ViewMenu(ctx, menu_type=ViewMenu.TypeEmbed)
         for review in review_list[:10]:
             embed = discord.Embed(title="Review", description=review.comment)
             embed.add_field(name="Date Posted", value=f"<t:{review.timestamp}>")
             embed.set_author(name=review.user["name"], icon_url=review.user["avatar"])
-            embeds.append(embed)
-        await ctx.send(f"{len(embeds)} reviews", embeds=embeds)
+            menu.add_page(embed)
+        menu.add_button(ViewButton.back())
+        menu.add_button(ViewButton.next())
+        #await ctx.send(f"{len(embeds)} reviews", embeds=embeds)
+        await menu.start()
 
 
 async def setup(bot):
