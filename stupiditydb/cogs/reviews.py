@@ -19,7 +19,6 @@ class Reviews(commands.Cog):
         review_list: List[Review] = await self.reviewdb.get_user_reviews(user.id)
         if not review_list:
             return await ctx.send("No reviews found")
-        embeds: List[discord.Embed] = []
         menu = ViewMenu(ctx.interaction or ctx, menu_type=ViewMenu.TypeEmbed)
         for review in review_list[:10]:
             embed = discord.Embed(title="Review", description=review.comment)
