@@ -20,7 +20,7 @@ class Reviews(commands.Cog):
         if not review_list:
             return await ctx.send("No reviews found")
         embeds: List[discord.Embed] = []
-        menu = ViewMenu(ctx, menu_type=ViewMenu.TypeEmbed)
+        menu = ViewMenu(ctx.interaction or ctx, menu_type=ViewMenu.TypeEmbed)
         for review in review_list[:10]:
             embed = discord.Embed(title="Review", description=review.comment)
             embed.add_field(name="Date Posted", value=f"<t:{review.timestamp}>")
