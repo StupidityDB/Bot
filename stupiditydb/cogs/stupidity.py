@@ -14,7 +14,11 @@ class Stupidity(commands.Cog):
     async def get_stupidity(self, ctx, *, user: discord.User):
         """Get stupidity of a specific user"""
         stupidity = await self.stupiditydb.get_user_stupidity(user.id)
-        await ctx.send(f"Stupidity: {stupidity or 0}%")
+        await ctx.send(
+            f"Stupidity: {stupidity}%"
+            if stupidity
+            else "This user has no stupidity votes."
+        )
 
     @commands.hybrid_command(name="stupitvote")
     async def vote_stupidity(
