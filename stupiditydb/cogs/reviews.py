@@ -21,8 +21,9 @@ class Reviews(commands.Cog):
             return await ctx.send("No reviews found")
         menu = ViewMenu(ctx.interaction or ctx, menu_type=ViewMenu.TypeEmbed)
         for review in review_list[:10]:
-            embed = discord.Embed(title="Review", description=review.comment)
-            embed.add_field(name="Date Posted", value=f"<t:{review.timestamp}>")
+            embed = discord.Embed(
+                title="Review", description=review.comment, timestamp=review.datetime()
+            )
             embed.set_author(name=review.user["name"], icon_url=review.user["avatar"])
             menu.add_page(embed)
         menu.add_button(ViewButton.back())

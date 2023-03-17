@@ -31,7 +31,9 @@ class Bot(commands.Bot):
     async def on_ready(self):
         print(f"Logged on as {self.user} (ID: {self.user.id})")
 
-    async def on_command_error(self, ctx, error):
+    async def on_command_error(
+        self, ctx: commands.Context, error: discord.DiscordException()
+    ):
         if isinstance(error, commands.NotOwner):
             await ctx.reply(
                 embed=discord.Embed(
