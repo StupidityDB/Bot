@@ -16,7 +16,7 @@ class Stupidity(commands.Cog):
         stupidity = await self.stupiditydb.get_user_stupidity(user.id)
         await ctx.send(
             f"Stupidity: {stupidity}%"
-            if stupidity
+            if stupidity not in ["None", None]
             else "This user has no stupidity votes."
         )
 
