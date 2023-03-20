@@ -30,6 +30,12 @@ class Reviews(commands.Cog):
         menu.add_button(ViewButton.next())
         await menu.start()
 
+    @commands.hybrid_command(name="addreview")
+    async def create_review(self, ctx, target: discord.User, *, comment: str):
+        """Create a review"""
+        await self.reviewdb.create_user_review(ctx.author, target, comment)
+        await ctx.send("Review created")
+
 
 async def setup(bot):
     await bot.add_cog(Reviews(bot))

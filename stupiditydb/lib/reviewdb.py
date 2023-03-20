@@ -3,6 +3,8 @@ Python module to make interaction with reviewdb easier
 """
 
 from datetime import datetime as dt
+import discord
+import config
 
 from lib.base import Base
 
@@ -43,3 +45,24 @@ class ReviewDB(Base):
             if include_system or review["type"] != 3:
                 reviews.append(Review(review))
         return reviews
+
+    async def create_user_review(
+        self, sender: discord.User, target: discord.User, comment: str
+    ):
+        endpoint = "/reviewdb/users/%s/reviews"
+        data = {
+            "comment": comment,
+            "token": config.token,
+            "reviewtype": 1,
+            "sender": {
+                "discordid": str(sender.id),
+                "username": sender.name,
+                "profile_photo": str(sender.avatar),
+            },
+        }
+        response: dict = await self.api_get(
+            endpoint % target.id, method="PUT", json=data
+        )
+        if not response["success"]:
+            raise Exception(f"[create_user_review] Request returned failure")
+        return response
