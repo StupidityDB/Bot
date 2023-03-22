@@ -13,7 +13,13 @@ class Reviews(commands.Cog):
         self.bot: commands.Bot = bot
         self.reviewdb: ReviewDB = ReviewDB()
 
-    @commands.hybrid_command(name="getreviews")
+    @commands.hybrid_group(name="reviews")
+    async def reviews_group(self, ctx):
+        """
+        Group of commands for reviews"""
+        await ctx.send_help(self.reviews_group)
+
+    @reviews_group.command(name="get")
     async def get_reviews(self, ctx, *, user: discord.User):
         """Get reviews of a specific user"""
         review_list: List[Review] = await self.reviewdb.get_user_reviews(user.id)
@@ -30,7 +36,7 @@ class Reviews(commands.Cog):
         menu.add_button(ViewButton.next())
         await menu.start()
 
-    @commands.hybrid_command(name="addreview")
+    @reviews_group.command(name="add")
     async def create_review(self, ctx, user: discord.User, *, comment: str):
         """Create a review"""
         await self.reviewdb.create_user_review(ctx.author, user, comment)
