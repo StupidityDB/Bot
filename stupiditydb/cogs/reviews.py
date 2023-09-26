@@ -26,7 +26,7 @@ class Reviews(commands.Cog):
         if not review_list:
             return await ctx.send("No reviews found")
         menu = ViewMenu(ctx.interaction or ctx, menu_type=ViewMenu.TypeEmbed)
-        for review in review_list[:10]:
+        for review in review_list:
             embed = discord.Embed(
                 title="Review", description=review.comment, timestamp=review.datetime()
             )
