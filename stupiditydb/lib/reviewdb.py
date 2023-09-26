@@ -21,7 +21,6 @@ class Review:
             "name": data["sender"]["username"],
             "avatar": data["sender"]["profilePhoto"],
         }
-        self.stars = data["star"]
         self.comment = data["comment"]
         self.badges = data["sender"]["badges"]
         self.type = data["type"]
@@ -53,7 +52,7 @@ class ReviewDB(Base):
         data = {
             "comment": comment,
             "token": config.token,
-            "reviewtype": 1,
+            "reviewtype": 0,
             "sender": {
                 "discordid": str(sender.id),
                 "username": sender.name,
